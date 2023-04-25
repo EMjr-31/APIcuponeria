@@ -11,6 +11,66 @@
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
 </head>
 <body>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-md-4 offset-md-4">
+                <div class="d-grid mx-auto">
+                    <button class="btn btn-dark openModal" data-op="1" data-bs-toggle="modal" data-bs-target="#modalEditorial">
+                        <i class="fa-solid fa-circle-plus"></i> Agregar Editorial
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-lg-8 offset-0 offset-lg-2">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <td>#</td>
+                            <td>Codigo</td>
+                            <td>Nombre</td>
+                            <td>Contacto</td>
+                            <td>Telefono</td>
+                            <td></td>
+                        </thead>
+                        <tbody id="contenido"></tbody>
+                    </table>
+                </divc>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalEditorial" tabindex="-1" aria-hideen="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <label class="h5" id="titulo_modal" for=""></label>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="codigo_editorial">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
+                        <input type="text" id="nombre_editorial" class="form-control" maxlength="50" placeholder="Nombre Editorial" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-solid fa-address-book"></i></i></span>
+                        <input type="text" id="contacto" class="form-control" maxlength="50" placeholder="contacto" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                        <input type="text" id="telefono" class="form-control" maxlength="50" placeholder="telefono" required>
+                    </div>
+                    <div class="d-grid col-6 mx-auto">
+                        <button class="btn btn-success" id="btnGuardar"><i class="fa-solid fa-floppy-disk"></i>  Guardar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCerrar" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
     <!--Js-->
     <script src="js/bootstrap.bundle.min.js"></script>
