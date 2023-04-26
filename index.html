@@ -31,7 +31,7 @@
                             <td>Nombre</td>
                             <td>Contacto</td>
                             <td>Telefono</td>
-                            <td></td>
+                            <td>Operaciones</td>
                         </thead>
                         <tbody id="contenido"></tbody>
                     </table>
@@ -47,7 +47,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="codigo_editorial">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                        <input type="text" id="codigo_editorial" class="form-control" maxlength="50" placeholder="Codigo Editorial" required>
+                    </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
                         <input type="text" id="nombre_editorial" class="form-control" maxlength="50" placeholder="Nombre Editorial" required>
@@ -77,4 +80,5 @@
     <script src="js/bootstrap.bundle.min.js.map"></script>
     <script src="js/jquery-3.6.4.min.js"></script>
     <script src="js/sweetalert2.all.min.js"></script>
+    <script src="js/index.js"></script>
 </html>
