@@ -13,7 +13,7 @@ function getDatos(){
                 if(datos.length>0){
                     jQuery.each(datos, function(i,dat){
                         var btnEditar='<button type="button" class="btn btn-warning openModal" data-op="2" data-bs-toggle="modal" data-bs-target="#modalEditorial" data-codigo="'+dat.codigo_editorial+'" data-nombre="'+dat.nombre_editorial+'" data-contacto="'+dat.contacto+'" data-telefono="'+dat.telefono+'"><i class="fa-solid fa-edit"></i></button>';
-                        var btnEliminar='<button type="button" class="btn btn-danger"  data-codigo="'+dat.codigo_editorial+'"><i class="fa-solid fa-trash"></i></button>';
+                        var btnEliminar='<button type="button" class="btn btn-danger delete"  data-codigo="'+dat.codigo_editorial+'" data-nombre="'+dat.nombre_editorial+'"><i class="fa-solid fa-trash"></i></button>';
                         $('#contenido').append('<tr><td>'+(i+1)+'</td><td>'+dat.codigo_editorial+'</td><td>'+dat.nombre_editorial+'</td><td>'+dat.contacto+'</td><td>'+dat.telefono+'</td><td>'+btnEditar+'  '+btnEliminar+'</td></tr>')
                     })
                 }
@@ -60,15 +60,24 @@ $(document).on('click','#btnGuardar',function(){
     var contacto=$('#contacto').val().trim();
     var telefono=$('#telefono').val().trim();
     var opcion=$('#btnGuardar').attr('data-operacion');
-    if(opcion==1){
+    if(opcion=='1'){
         metodo='POST';
-        parametros={codigo_editorial:codigo,nombre_editorial:nombre,contacto:contacto,telefono:telefono};
+        parametros={
+            codigo_editorial:codigo,
+            nombre_editorial:nombre,
+            contacto:contacto,
+            telefono:telefono
+        };
         url=urlapi;
     }else{
         metodo='PUT';
-        parametros={codigo_editorial:codigo,nombre_editorial:nombre,contacto:contacto,telefono:telefono};
+        parametros={
+            codigo_editorial:codigo,
+            nombre_editorial:nombre,
+            contacto:contacto,
+            telefono:telefono
+        };
         url=urlapi+'/'+codigo;
-        alert(url);
     }
     if(codigo==''){
         show_alerta('Ingeres el codigo del editorial','warning','codigo');
@@ -82,18 +91,28 @@ $(document).on('click','#btnGuardar',function(){
         enviarSolicitud(metodo,parametros,url);
     }
 });
-
+///funcion guardar o eliminar
 function enviarSolicitud(metodo,parametros,urlx){
     $.ajax({
         type:metodo,
         url:urlx,
         data:JSON.stringify(parametros),
-        dataType:'json',
+        contentType:'application/json',
         success:function(respuesta){ 
-            alert(respuestap[1]);
-            alert(respuestap[0]);
-            show_alerta(respuestap[1],respuesta[0]);
-            if(respuesta[0]==='success'){
+            if(respuesta=='1'){
+                var mensaje;
+                switch(metodo){
+                    case 'POST':
+                        mensaje="Editorial guardo con exitos"
+                        break;
+                    case 'PUT':
+                        mensaje="Se guardaron los cambios"
+                        break;
+                        case 'delete':
+                        mensaje="Editorial Eliminado"
+                        break;
+                };
+                show_alerta(mensaje,'success');
                 $('#btnCerrar').trigger('click');
                 getDatos();
             }
@@ -103,6 +122,30 @@ function enviarSolicitud(metodo,parametros,urlx){
         }
     });
 }
+///Eliminar 
+$(document).on('click','.delete',function(){
+    var codigo=$(this).attr('data-codigo');
+    var nombre=$(this).attr('data-nombre');
+    const swalWithBootstrapButtons=Swal.mixin({
+        customClass:{confirmButton:'btn btn-success ms-3',cancelButton:'btn btn-danger'},buttonsStyling:false
+    });
+    swalWithBootstrapButtons.fire({
+        title:'Seguro de eliminar el editorial: ' +nombre,
+        text:'Se perdera la informacion del inventario',
+        icon:'question',
+        showCancelButton: true,
+        confirmButtonText:'Eliminar',
+        cancelButtonText:'Cancelar',
+        reverseButtons:true
+    }).then((result=>{
+        if(result.isConfirmed){
+            url=urlapi+'/'+codigo;
+            enviarSolicitud('delete',{codigo_editorial:codigo},url);
+        }else{
+            show_alerta('El producto no fue eliminado','error');
+        }
+    }));
+});
 
 //Limpiar 
 function limpiar(){
