@@ -18,6 +18,7 @@ function getDatos(urlbuscar){
                     const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
                     const dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
                     $('#Titulo_Cupon').text(dat.cupon.Titulo_Cupon);
+                    $('#id').text("Codigo cupon: "+codigo_venta);
                     $('#Descripcion_Cupon').text(dat.cupon.Descripcion_Cupon);
                     $('#Precio_Regular_Cupon').text("Precio Regular: $"+dat.cupon.Precio_Regular_Cupon);
                     $('#Precio_Oferta_Cupon').text("Precio Oferta: $"+dat.cupon.Precio_Oferta_Cupon);
