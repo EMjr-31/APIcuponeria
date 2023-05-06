@@ -11,27 +11,39 @@
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row mt-3">
-            <div class="col-md-4 offset-md-4">
-                <div class="d-grid mx-auto">
-                    <button class="btn btn-dark openModal" data-op="1" data-bs-toggle="modal" data-bs-target="#modalEditorial">
-                        <i class="fa-solid fa-circle-plus"></i> Agregar Editorial
-                    </button>
-                </div>
+    <section class="d-flex justify-content-center align-items-center">
+        <div class="card  col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
+            <div class="mb-4 d-flex justify-content-start align-items-center">
+                <h4> Buscar Cupon </h4>
+            </div>
+            <div class="mb-1">
+                <form id = "contacto" >
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                        <input type="text" id="busca_codigo_editorial" class="form-control" maxlength="50" placeholder="Codigo Cupon" required>
+                    </div> 
+                    <div class="mb-2">
+                        <button id ="btnbuscar" class="col-12 btn btn-primary ">
+                            Buscar  <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div> 
+                              
+                </form>
             </div>
         </div>
+    </section>
+    <div class="container-fluid">
         <div class="row mt-3">
             <div class="col-12 col-lg-8 offset-0 offset-lg-2">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead>
                             <td>#</td>
-                            <td>Codigo</td>
-                            <td>Nombre</td>
-                            <td>Contacto</td>
-                            <td>Telefono</td>
-                            <td>Operaciones</td>
+                            <td>Codigo Cupon</td>
+                            <td>Titulo</td>
+                            <td>Precio Oferta Cupon</td>
+                            <td>Cantidad_Cupon</td>
+                            <td>Opereciones</td>
                         </thead>
                         <tbody id="contenido"></tbody>
                     </table>

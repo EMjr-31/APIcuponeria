@@ -1,21 +1,22 @@
-$(function(){getDatos();});
+
 ///Obtener los datos
-var urlapi= 'http://localhost:8000/api/editoriales';
-function getDatos(){
+var urlapi= 'http://localhost:8000/api/venta';
+function getDatos(urlbuscar){
     $('#contenido').empty();
     $.ajax(
         {
             type:'GET',
-            url:urlapi,
+            url:urlbuscar,
             dataType:'json',
             success: function(respuesta){
-                var datos= respuesta;
-                if(datos.length>0){
-                    jQuery.each(datos, function(i,dat){
-                        var btnEditar='<button type="button" class="btn btn-warning openModal" data-op="2" data-bs-toggle="modal" data-bs-target="#modalEditorial" data-codigo="'+dat.codigo_editorial+'" data-nombre="'+dat.nombre_editorial+'" data-contacto="'+dat.contacto+'" data-telefono="'+dat.telefono+'"><i class="fa-solid fa-edit"></i></button>';
-                        var btnEliminar='<button type="button" class="btn btn-danger delete"  data-codigo="'+dat.codigo_editorial+'" data-nombre="'+dat.nombre_editorial+'"><i class="fa-solid fa-trash"></i></button>';
-                        $('#contenido').append('<tr><td>'+(i+1)+'</td><td>'+dat.codigo_editorial+'</td><td>'+dat.nombre_editorial+'</td><td>'+dat.contacto+'</td><td>'+dat.telefono+'</td><td>'+btnEditar+'  '+btnEliminar+'</td></tr>')
-                    })
+                var dat= respuesta;
+                if(dat){
+                    console.log(dat);
+                    //jQuery.each(datos, function(i,dat){
+                        var btnEditar='<button type="button" class="btn btn-warning openModal" data-op="2" data-bs-toggle="modal" data-bs-target="#modalEditorial" data-codigo="'+dat.cupon.ID_Cupon+'" data-nombre="'+dat.cupon.Titulo_Cupon+'" data-contacto="'+dat.cupon.Precio_Oferta_Cupon+'" data-telefono="'+dat.cupon.Cantidad_Cupon+'"><i class="fa-solid fa-edit"></i></button>';
+                        var btnEliminar='<button type="button" class="btn btn-danger delete"  data-codigo="'+dat.cupon.ID_Cupon+'" data-nombre="'+dat.cupon.Titulo_Cupon+'"><i class="fa-solid fa-trash"></i></button>';
+                        $('#contenido').append('<tr><td>'+1+'</td><td>'+dat.cupon.ID_Cupon+'</td><td>'+dat.cupon.Titulo_Cupon+'</td><td> $ '+dat.cupon.Precio_Oferta_Cupon+'</td><td>'+dat.cupon.Cantidad_Cupon+'</td><td>'+btnEditar+'  '+btnEliminar+'</td></tr>')
+                    ///})
                 }
             },
             error:function(){
@@ -24,6 +25,22 @@ function getDatos(){
         }
     );
 }
+
+//Buscar
+$(document).on('click','#btnbuscar',function(){
+    event.preventDefault();
+    var codigo_editorial=$('#busca_codigo_editorial').val().trim();
+    let reg = /^(VE)[0-9]{4}$/;
+    if(reg.test(codigo_editorial)){
+        url=urlapi+"/"+codigo_editorial;
+        alert(url);
+        getDatos(url);
+
+    }else{
+        show_alerta('Formato incorrecto de codigo','error');
+    }
+    
+});
 
 //Ventana modal
 $(document).on('click','.openModal', function(){
