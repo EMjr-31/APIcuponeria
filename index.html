@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,30 +11,32 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css.map">
 </head>
+
 <body>
     <section class="d-flex justify-content-center align-items-center">
-        <div class="card  col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
+        <div class="card  col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4">
             <div class="mb-4 d-flex justify-content-start align-items-center">
                 <h4>Buscar Cupon</h4>
             </div>
             <div class="mb-1">
-                <form id = "contacto" >
+                <form id="contacto">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fa-solid fa-ticket"></i> </span>
-                        <input type="text" id="busca_codigo_editorial" class="form-control" maxlength="50" placeholder="Codigo Cupon" required>
-                    </div> 
+                        <input type="text" id="busca_codigo_editorial" class="form-control" maxlength="50"
+                            placeholder="Codigo Cupon" required>
+                    </div>
                     <div class="mb-2">
-                        <button id ="btnbuscar" class="col-12 btn btn-primary ">
-                            Buscar  <i class="fa-solid fa-magnifying-glass"></i>
+                        <button id="btnbuscar" class="col-12 btn btn-primary ">
+                            Buscar <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                    </div> 
-                              
+                    </div>
+
                 </form>
             </div>
         </div>
     </section>
-    <section class="d-flex justify-content-center align-items-center mt-4">
-        <div class="card col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
+    <section id="detallesventa" class="d-flex justify-content-center align-items-center mt-4 d-none">
+        <div class="card col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4">
             <div class="mb-1 d-flex justify-content-start align-items-center">
                 <h4 id="Titulo_Cupon">Cupon</h4>
             </div>
@@ -41,125 +44,89 @@
                 <p id="Descripcion_Cupon"></p>
             </div>
             <div class="d-flex justify-content-start justify-content-between">
-                <h6 id="Precio_Regular_Cupon"><h6/>
-                <h6 id="Precio_Oferta_Cupon"><h6/>
-                <h6 id="Ahorro"><h6/>
+                <h6 id="Precio_Regular_Cupon">
+                    <h6 />
+                    <h6 id="Precio_Oferta_Cupon">
+                        <h6 />
+                        <h6 id="Ahorro">
+                            <h6 />
             </div>
             <div class="d-flex justify-content-start justify-content-between">
-                <h6 id="Fecha_Limite_Cupon"><h6/>
+                <h6 id="Fecha_Limite_Cupon">
+                    <h6 />
             </div>
             <div class="d-flex justify-content-start justify-content-between">
-                <div id="alert" class="alert alert-danger d-none w-100" >
-                    <h6 id="tFecha_Limite_Cupon" ><h6/>
-                    <p id="pFecha_Limite_Cupon"></p>
+                <div id="alert" class="alert alert-danger d-none w-100">
+                    <h6 id="tFecha_Limite_Cupon">
+                        <h6 />
+                        <p id="pFecha_Limite_Cupon"></p>
                 </div>
             </div>
-            <hr />
-            <div id="cliente" class="mb-1 ">
-                <form id = "contacto" >
-                    <div class="mb-1 d-flex justify-content-start align-items-center">
-                        <h4 >Cliente</h4>
+
+            <divclass="mb-1 ">
+                <form id="venta" method="Pull">
+                    <div id="cliente">
+                        <hr />
+                        <div class="mb-1 d-flex justify-content-start align-items-center">
+                            <h4>Cliente</h4>
+                        </div>
+                        <div class="mb-4">
+                            <label for="nombre_usuario"><i class="bi bi-envelope-fill"></i>Nombre</label>
+                            <input type="email" class="form-control" name="nombre_usuario" id="nombre_usuario"
+                                placeholder="" disabled>
+                            <div class="correo text-danger"></div>
+
+                        </div>
+                        <div class="mb-4 d-flex justify-content-between">
+                            <div>
+                                <label for="Identificacion_Usuario"> <i
+                                        class="bi bi-person-fill"></i>Identificacion</label>
+                                <input type="text" class="form-control" name="nombre" id="Identificacion_Usuario"
+                                    placeholder="" disabled>
+                            </div>
+                            <div>
+                                <label for="Correo_Usuario"><i class="bi bi-envelope-fill"></i> Correo</label>
+                                <input type="email" class="form-control" name="correo" id="Correo_Usuario"
+                                    placeholder="ej: gpmcheco@mail.com" disabled>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-4">
-                        <label for="nombre_usuario"><i class="bi bi-envelope-fill"></i>Nombre</label>
-                        <input type="email" class="form-control" name="nombre_usuario" id="nombre_usuario" placeholder= "" disabled>
-                        <div class="correo text-danger"></div>
-                        
-                    </div> 
-                    <div class="mb-4 d-flex justify-content-between"> 
+                    <div id="compra">
+                        <hr />
+                        <div class="mb-1 d-flex justify-content-start align-items-center">
+                            <h4>Detalles de Compra</h4>
+                        </div>
+                        <div class="mb-1 d-flex justify-content-start align-items-center">
+                            <p id="Fecha_Compra_Venta"></p>
+                        </div>
+                        <div class="mb-1 d-flex justify-content-start align-items-center">
+                            <p id="Fecha_Compra_Venta"></p>
+                        </div>
+                        <div class="mb-1 d-flex justify-content-start align-items-center">
+                            <p id="Fecha_Canje_Venta"></p>
+                        </div>
                         <div>
-                            <label for="Identificacion_Usuario"> <i class="bi bi-person-fill"></i>Identificacion</label>
-                            <input type="text" class="form-control" name="nombre" id="Identificacion_Usuario" placeholder= "" disabled>
+                            <input type="text" class="form-control" name="m_condigo_venta" id="m_condigo_venta"
+                                placeholder="ej: gpmcheco@mail.com" hidden>
                         </div>
-                        <div >
-                            <label for="Correo_Usuario"><i class="bi bi-envelope-fill"></i> Correo</label>
-                        <input type="email" class="form-control" name="correo" id="Correo_Usuario" placeholder= "ej: gpmcheco@mail.com" disabled>
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="mb-1 d-flex justify-content-start align-items-center">
-                        <h4>Detalles de Compra</h4>
-                    </div>
-                    <div class="mb-1 d-flex justify-content-start align-items-center">
-                        <p id="Fecha_Compra_Venta"></p>
-                    </div>
-                    <div class="mb-1 d-flex justify-content-start align-items-center">
-                        <p id="Fecha_Compra_Venta"></p>
-                    </div>
-                    <div class="mb-1 d-flex justify-content-start align-items-center">
-                        <p id="Fecha_Canje_Venta"></p>
                     </div>
                     <div class="mb-2">
-                        <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
-                            <span>Enviar </span><i id="icono" class="bi bi-cursor-fill "></i>
+                        <button  type="button" id="btnCanjear" class="col-12 btn btn-primary d-flex justify-content-between ">
+                            Canjear  <i class="fa-solid fa-gift fa-shake"></i>
                         </button>
-                    </div> 
-                              
+                    </div>
+
                 </form>
             </div>
         </div>
     </section>
 
-
-    <div class="container-fluid">
-        <div class="row mt-3">
-            <div class="col-12 col-lg-8 offset-0 offset-lg-2">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <td>#</td>
-                            <td>Codigo Cupon</td>
-                            <td>Titulo</td>
-                            <td>Precio Oferta Cupon</td>
-                            <td>Cantidad_Cupon</td>
-                            <td>Opereciones</td>
-                        </thead>
-                        <tbody id="contenido"></tbody>
-                    </table>
-                </divc>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modalEditorial" tabindex="-1" aria-hideen="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <label class="h5" id="titulo_modal" for=""></label>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-                        <input type="text" id="codigo_editorial" class="form-control" maxlength="50" placeholder="Codigo Editorial" required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-book"></i></span>
-                        <input type="text" id="nombre_editorial" class="form-control" maxlength="50" placeholder="Nombre Editorial" required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-address-book"></i></i></span>
-                        <input type="text" id="contacto" class="form-control" maxlength="50" placeholder="contacto" required>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-                        <input type="text" id="telefono" class="form-control" maxlength="50" placeholder="telefono" required>
-                    </div>
-                    <div class="d-grid col-6 mx-auto">
-                        <button class="btn btn-success" id="btnGuardar"><i class="fa-solid fa-floppy-disk"></i>  Guardar</button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="btnCerrar" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </body>
-    <!--Js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js.map"></script>
-    <script src="js/jquery-3.6.4.min.js"></script>
-    <script src="js/sweetalert2.all.min.js"></script>
-    <script src="js/index.js"></script>
+<!--Js-->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js.map"></script>
+<script src="js/jquery-3.6.4.min.js"></script>
+<script src="js/sweetalert2.all.min.js"></script>
+<script src="js/index.js"></script>
+
 </html>
