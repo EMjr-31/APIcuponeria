@@ -46,45 +46,49 @@
                 <h6 id="Ahorro"><h6/>
             </div>
             <div class="d-flex justify-content-start justify-content-between">
-                <h6 id="Fecha_Limite_Cupon" class="p-1"><h6/>
+                <h6 id="Fecha_Limite_Cupon"><h6/>
             </div>
-            <div class="mb-1">
+            <div class="d-flex justify-content-start justify-content-between">
+                <div id="alert" class="alert alert-danger d-none w-100" >
+                    <h6 id="tFecha_Limite_Cupon" ><h6/>
+                    <p id="pFecha_Limite_Cupon"></p>
+                </div>
+            </div>
+            <hr />
+            <div id="cliente" class="mb-1 ">
                 <form id = "contacto" >
+                    <div class="mb-1 d-flex justify-content-start align-items-center">
+                        <h4 >Cliente</h4>
+                    </div>
                     <div class="mb-4">
-                        <label for="nombre_usuario"><i class="bi bi-envelope-fill"></i>Titulo</label>
+                        <label for="nombre_usuario"><i class="bi bi-envelope-fill"></i>Nombre</label>
                         <input type="email" class="form-control" name="nombre_usuario" id="nombre_usuario" placeholder= "" disabled>
                         <div class="correo text-danger"></div>
                         
                     </div> 
                     <div class="mb-4 d-flex justify-content-between"> 
                         <div>
-                            <label for="nombre"> <i class="bi bi-person-fill"></i> Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder= "ej: Gabriel" required>
+                            <label for="Identificacion_Usuario"> <i class="bi bi-person-fill"></i>Identificacion</label>
+                            <input type="text" class="form-control" name="nombre" id="Identificacion_Usuario" placeholder= "" disabled>
                         </div>
                         <div >
-                            <label for="apellido"> <i class="bi bi-person-bounding-box"></i> Apellido</label>
-                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder= "ej: Pacheco" required>
-                            <div class="apellido text-danger"></div>
+                            <label for="Correo_Usuario"><i class="bi bi-envelope-fill"></i> Correo</label>
+                        <input type="email" class="form-control" name="correo" id="Correo_Usuario" placeholder= "ej: gpmcheco@mail.com" disabled>
                         </div>
                     </div>
-                    <div class="mb-4">
-                        <label for="correo"><i class="bi bi-envelope-fill"></i> Correo</label>
-                        <input type="email" class="form-control" name="correo" id="correo" placeholder= "ej: gpmcheco@mail.com" required>
-                        <div class="correo text-danger"></div>
-                        
-                    </div> 
-                    <div class="mb-4">
-                        <label for="sexo"><i class="bi bi-gender-ambiguous"></i> Sexo: </label>
-                        <input type="radio" class="form-check-input"  name="sexo"  value="masculino" > Masculino
-                        <input type="radio" class="form-check-input" name="sexo"  value="femenino" > Femenino
-                        <div class="sexo text-danger"></div>
-                    </div>  
-                    <div class="mb-4">
-                        <label for="mensaje"> <i class="bi bi-chat-right-dots-fill" required></i> Mensaje</label>
-                        <textarea name="mensaje" id="mensaje" class="form-control" placeholder="ej: hola"></textarea>
-                        <div class="mensaje text-danger"></div>
-                    </div> 
-                    
+                    <hr />
+                    <div class="mb-1 d-flex justify-content-start align-items-center">
+                        <h4>Detalles de Compra</h4>
+                    </div>
+                    <div class="mb-1 d-flex justify-content-start align-items-center">
+                        <p id="Fecha_Compra_Venta"></p>
+                    </div>
+                    <div class="mb-1 d-flex justify-content-start align-items-center">
+                        <p id="Fecha_Compra_Venta"></p>
+                    </div>
+                    <div class="mb-1 d-flex justify-content-start align-items-center">
+                        <p id="Fecha_Canje_Venta"></p>
+                    </div>
                     <div class="mb-2">
                         <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
                             <span>Enviar </span><i id="icono" class="bi bi-cursor-fill "></i>

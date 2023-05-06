@@ -12,13 +12,41 @@ function getDatos(urlbuscar){
                 var dat= respuesta;
                 if(dat){
                     limpiar();
+                    ///fechas
+                    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                    const dias_semana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
                     $('#Titulo_Cupon').text(dat.cupon.Titulo_Cupon);
                     $('#Descripcion_Cupon').text(dat.cupon.Descripcion_Cupon);
                     $('#Precio_Regular_Cupon').text("Precio Regular: $"+dat.cupon.Precio_Regular_Cupon);
                     $('#Precio_Oferta_Cupon').text("Precio Oferta: $"+dat.cupon.Precio_Oferta_Cupon);
                     $('#Ahorro').text("Ahorro: $"+(dat.cupon.Precio_Regular_Cupon-dat.cupon.Precio_Oferta_Cupon).toFixed(2));
-                    var Fecha_Limite_Cupon=new Date(dat.cupon.Fecha_Limite_Cupon).toDateString();
-                    $('#Fecha_Limite_Cupon').text("Fecha limite para canjear: "+Fecha_Limite_Cupon);
+                    var Fecha_Limite_Cupon=new Date(dat.cupon.Fecha_Limite_Cupon);
+                    var fechaActual = new Date();
+                    if (Fecha_Limite_Cupon<fechaActual){
+                        $('#alert').removeClass("d-none");
+                        //$('#cliente').addClass("d-none");
+                        $('#tFecha_Limite_Cupon').text("EL CUPON YA NO PUEDE SER CANJEADO");
+                        $('#pFecha_Limite_Cupon').text("Fecha limite: "+dias_semana[Fecha_Limite_Cupon.getDay()] + ', ' + Fecha_Limite_Cupon.getDate() + ' de ' + meses[Fecha_Limite_Cupon.getMonth()] + ' de ' + Fecha_Limite_Cupon.getUTCFullYear());
+                    }else{
+                        $('#alert').addClass("d-none");
+                       // $('#cliente').removeClass("d-none");
+                        $('#Fecha_Limite_Cupon').text("Fecha limite para canjear: "+dias_semana[Fecha_Limite_Cupon.getDay()] + ', ' + Fecha_Limite_Cupon.getDate() + ' de ' + meses[Fecha_Limite_Cupon.getMonth()] + ' de ' + Fecha_Limite_Cupon.getUTCFullYear());
+                    }
+                    $('#nombre_usuario').val(dat.usuario.Nombre_Usuario);
+                    $('#Correo_Usuario').val(dat.usuario.Correo_Usuario);
+                    $('#Identificacion_Usuario').val(dat.usuario.Identificacion_Usuario);
+                    var Fecha_Compra_Venta =new Date(dat.Fecha_Compra_Venta);
+                    $('#Fecha_Compra_Venta').text("Fecha de compra: "+dias_semana[Fecha_Compra_Venta.getDay()] + ', ' + Fecha_Compra_Venta.getDate() + ' de ' + meses[Fecha_Compra_Venta.getMonth()] + ' de ' + Fecha_Compra_Venta.getUTCFullYear());
+                    var estado =dat.Estado_Canje_Venta;
+                    if (estado==0){
+                        $('#Fecha_Canje_Venta').text("El cupon no ha sido canjeado:");
+                    }else{
+                        var Fecha_Canje_Venta =new Date(dat.Fecha_Canje_Venta);
+                        $('#Fecha_Canje_Venta').text("El cupon fue canjeado: "+dias_semana[Fecha_Canje_Venta.getDay()] + ', ' + Fecha_Canje_Venta.getDate() + ' de ' + meses[Fecha_Canje_Venta.getMonth()] + ' de ' + Fecha_Canje_Venta.getUTCFullYear());    
+                    }
+                   
+
+
 
                     //jQuery.each(datos, function(i,dat){
                         var btnEditar='<button type="button" class="btn btn-warning openModal" data-op="2" data-bs-toggle="modal" data-bs-target="#modalEditorial" data-codigo="'+dat.cupon.ID_Cupon+'" data-nombre="'+dat.cupon.Titulo_Cupon+'" data-contacto="'+dat.cupon.Precio_Oferta_Cupon+'" data-telefono="'+dat.cupon.Cantidad_Cupon+'"><i class="fa-solid fa-edit"></i></button>';
