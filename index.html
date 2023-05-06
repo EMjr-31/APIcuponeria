@@ -14,12 +14,12 @@
     <section class="d-flex justify-content-center align-items-center">
         <div class="card  col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
             <div class="mb-4 d-flex justify-content-start align-items-center">
-                <h4> Buscar Cupon </h4>
+                <h4>Buscar Cupon</h4>
             </div>
             <div class="mb-1">
                 <form id = "contacto" >
                     <div class="input-group mb-3">
-                        <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                        <span class="input-group-text"><i class="fa-solid fa-ticket"></i> </span>
                         <input type="text" id="busca_codigo_editorial" class="form-control" maxlength="50" placeholder="Codigo Cupon" required>
                     </div> 
                     <div class="mb-2">
@@ -32,6 +32,71 @@
             </div>
         </div>
     </section>
+    <section class="d-flex justify-content-center align-items-center mt-4">
+        <div class="card col-xs-12 col-sm-6 col-md-6 col-lg-4   p-4"> 
+            <div class="mb-1 d-flex justify-content-start align-items-center">
+                <h4 id="Titulo_Cupon">Cupon</h4>
+            </div>
+            <div class="mb-1 d-flex justify-content-start align-items-center">
+                <p id="Descripcion_Cupon"></p>
+            </div>
+            <div class="d-flex justify-content-start justify-content-between">
+                <h6 id="Precio_Regular_Cupon"><h6/>
+                <h6 id="Precio_Oferta_Cupon"><h6/>
+                <h6 id="Ahorro"><h6/>
+            </div>
+            <div class="d-flex justify-content-start justify-content-between">
+                <h6 id="Fecha_Limite_Cupon" class="p-1"><h6/>
+            </div>
+            <div class="mb-1">
+                <form id = "contacto" >
+                    <div class="mb-4">
+                        <label for="nombre_usuario"><i class="bi bi-envelope-fill"></i>Titulo</label>
+                        <input type="email" class="form-control" name="nombre_usuario" id="nombre_usuario" placeholder= "" disabled>
+                        <div class="correo text-danger"></div>
+                        
+                    </div> 
+                    <div class="mb-4 d-flex justify-content-between"> 
+                        <div>
+                            <label for="nombre"> <i class="bi bi-person-fill"></i> Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder= "ej: Gabriel" required>
+                        </div>
+                        <div >
+                            <label for="apellido"> <i class="bi bi-person-bounding-box"></i> Apellido</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder= "ej: Pacheco" required>
+                            <div class="apellido text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="correo"><i class="bi bi-envelope-fill"></i> Correo</label>
+                        <input type="email" class="form-control" name="correo" id="correo" placeholder= "ej: gpmcheco@mail.com" required>
+                        <div class="correo text-danger"></div>
+                        
+                    </div> 
+                    <div class="mb-4">
+                        <label for="sexo"><i class="bi bi-gender-ambiguous"></i> Sexo: </label>
+                        <input type="radio" class="form-check-input"  name="sexo"  value="masculino" > Masculino
+                        <input type="radio" class="form-check-input" name="sexo"  value="femenino" > Femenino
+                        <div class="sexo text-danger"></div>
+                    </div>  
+                    <div class="mb-4">
+                        <label for="mensaje"> <i class="bi bi-chat-right-dots-fill" required></i> Mensaje</label>
+                        <textarea name="mensaje" id="mensaje" class="form-control" placeholder="ej: hola"></textarea>
+                        <div class="mensaje text-danger"></div>
+                    </div> 
+                    
+                    <div class="mb-2">
+                        <button id ="botton" class="col-12 btn btn-primary d-flex justify-content-between ">
+                            <span>Enviar </span><i id="icono" class="bi bi-cursor-fill "></i>
+                        </button>
+                    </div> 
+                              
+                </form>
+            </div>
+        </div>
+    </section>
+
+
     <div class="container-fluid">
         <div class="row mt-3">
             <div class="col-12 col-lg-8 offset-0 offset-lg-2">

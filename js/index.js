@@ -11,7 +11,15 @@ function getDatos(urlbuscar){
             success: function(respuesta){
                 var dat= respuesta;
                 if(dat){
-                    console.log(dat);
+                    limpiar();
+                    $('#Titulo_Cupon').text(dat.cupon.Titulo_Cupon);
+                    $('#Descripcion_Cupon').text(dat.cupon.Descripcion_Cupon);
+                    $('#Precio_Regular_Cupon').text("Precio Regular: $"+dat.cupon.Precio_Regular_Cupon);
+                    $('#Precio_Oferta_Cupon').text("Precio Oferta: $"+dat.cupon.Precio_Oferta_Cupon);
+                    $('#Ahorro').text("Ahorro: $"+(dat.cupon.Precio_Regular_Cupon-dat.cupon.Precio_Oferta_Cupon).toFixed(2));
+                    var Fecha_Limite_Cupon=new Date(dat.cupon.Fecha_Limite_Cupon).toDateString();
+                    $('#Fecha_Limite_Cupon').text("Fecha limite para canjear: "+Fecha_Limite_Cupon);
+
                     //jQuery.each(datos, function(i,dat){
                         var btnEditar='<button type="button" class="btn btn-warning openModal" data-op="2" data-bs-toggle="modal" data-bs-target="#modalEditorial" data-codigo="'+dat.cupon.ID_Cupon+'" data-nombre="'+dat.cupon.Titulo_Cupon+'" data-contacto="'+dat.cupon.Precio_Oferta_Cupon+'" data-telefono="'+dat.cupon.Cantidad_Cupon+'"><i class="fa-solid fa-edit"></i></button>';
                         var btnEliminar='<button type="button" class="btn btn-danger delete"  data-codigo="'+dat.cupon.ID_Cupon+'" data-nombre="'+dat.cupon.Titulo_Cupon+'"><i class="fa-solid fa-trash"></i></button>';
@@ -20,7 +28,7 @@ function getDatos(urlbuscar){
                 }
             },
             error:function(){
-                show_alerta('Error al mostrar los editoriales','error');
+                show_alerta('Error al mostrar cupon','error');
             }
         }
     );
@@ -33,7 +41,6 @@ $(document).on('click','#btnbuscar',function(){
     let reg = /^(VE)[0-9]{4}$/;
     if(reg.test(codigo_editorial)){
         url=urlapi+"/"+codigo_editorial;
-        alert(url);
         getDatos(url);
 
     }else{
@@ -166,11 +173,8 @@ $(document).on('click','.delete',function(){
 
 //Limpiar 
 function limpiar(){
-    $('#codigo_editorial').removeAttr('disabled','');
-    $('#codigo_editorial').val('');
-    $('#nombre_editorial').val('');
-    $('#contacto').val('');
-    $('#telefono').val('');
+    //$('#codigo_editorial').removeAttr('disabled','');
+    $('#btnbuscar').val('');
 };
 ///Alertas utilizando Seealert
 function show_alerta(mensaje,icono,foco){
