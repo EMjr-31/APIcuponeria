@@ -2,11 +2,15 @@
 ///Obtener los datos
 var urlapi= 'http://localhost:8000/api/venta';
 var codigo_venta;
+let tok =  localStorage.getItem('token') ;
+var user;
+perfil();
 function getDatos(urlbuscar){
     $('#contenido').empty();
     $.ajax(
         {
             type:'GET',
+            headers: {'Authorization': 'Bearer '+tok},
             url:urlbuscar,
             dataType:'json',
             success: function(respuesta){
@@ -28,6 +32,7 @@ function getDatos(urlbuscar){
                     var fechaActual = new Date();
                     if (Fecha_Limite_Cupon<fechaActual){
                         $('#alert').removeClass("d-none");
+                        $('#Fecha_Limite_Cupon').text('');
                         $('#tFecha_Limite_Cupon').text("EL CUPON YA NO PUEDE SER CANJEADO");
                         $('#btnCanjear').addClass("d-none");
                         $('#pFecha_Limite_Cupon').text("Fecha limite: "+dias_semana[Fecha_Limite_Cupon.getDay()] + ', ' + Fecha_Limite_Cupon.getDate() + ' de ' + meses[Fecha_Limite_Cupon.getMonth()] + ' de ' + Fecha_Limite_Cupon.getUTCFullYear());
@@ -49,6 +54,8 @@ function getDatos(urlbuscar){
                         if(estado==1){
                             var Fecha_Canje_Venta =new Date(dat.Fecha_Canje_Venta);
                             $('#Fecha_Canje_Venta').text("El cupon fue canjeado: "+dias_semana[Fecha_Canje_Venta.getDay()] + ', ' + Fecha_Canje_Venta.getDate() + ' de ' + meses[Fecha_Canje_Venta.getMonth()] + ' de ' + Fecha_Canje_Venta.getUTCFullYear());    
+                        }else{
+                            $('#Fecha_Canje_Venta').text('');
                         }
                     }
                 }
@@ -59,6 +66,7 @@ function getDatos(urlbuscar){
         }
     );
 }
+
 
 //Buscar
 $(document).on('click','#btnbuscar',function(){
@@ -90,11 +98,48 @@ $(document).on('click','#btnCanjear',function(){
         url=urlapi+"/"+codigo_venta;
         enviarSolicitud(metodo,parametros,url);
 });
+///Perfil 
+function perfil(){
+    $.ajax(
+        {
+            type:'POST',
+            headers: {'Authorization': 'Bearer '+tok},
+            url:"http://localhost:8000/api/usuario/perfil",
+            dataType:'json',
+            success: function(respuesta){
+                user= respuesta;
+                $('#name_user').text("Usuario: "+user.Nombre_Usuario);
+            },
+            error:function(){
+                show_alerta('Debes iniciar sesion','error');
+                window.location.href="login.html";
+            }
+    });
+}
+
+//Cerrar sesion 
+$(document).on('click','#logout',function(){
+    $.ajax(
+        {
+            type:'POST',
+            headers: {'Authorization': 'Bearer '+tok},
+            url:"http://localhost:8000/api/usuario/logout",
+            dataType:'json',
+            success: function(respuesta){
+                window.location.href="login.html";
+            },
+            error:function(){
+                show_alerta('Error ','error');
+            }
+    });
+});
+
 ///funcion guardar o eliminar
 function enviarSolicitud(metodo,parametros,urlx){
     $.ajax({
         type:metodo,
         url:urlx,
+        headers: {'Authorization': 'Bearer '+tok},
         data:JSON.stringify(parametros),
         contentType:'application/json',
         success:function(respuesta){ 
